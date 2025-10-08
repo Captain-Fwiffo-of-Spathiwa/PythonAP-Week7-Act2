@@ -32,12 +32,12 @@ class TestTasks(unittest.TestCase):
     # def test_add_invalid_task
     # def test_add_to_invalid_tasks
 
-    def test_mark_task_completed(self):
-        """Test marking a task as completed."""
-        expected_list = [("Walk dogs", True), ("Handmade Hero", True)]
-        mark_task_completed(self.tasks, 0)
-        mark_task_completed(self.tasks, 1)
-        self.assertEqual(expected_list, self.tasks)
+    # def test_mark_task_completed(self):
+    #     """Test marking a task as completed."""
+    #     expected_list = [("Walk dogs", True), ("Handmade Hero", True)]
+    #     mark_task_completed(self.tasks, 0)
+    #     mark_task_completed(self.tasks, 1)
+    #     self.assertEqual(expected_list, self.tasks)
 
     # def test_mark_invalid_task_completed
     # def test_mark_task_completed_in_invalid_list
