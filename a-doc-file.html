@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Some doc file &#8212; Week7Stuff  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="apidocs/index.html" />
+    <link rel="prev" title="Week7Stuff documentation" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="some-doc-file">
+<h1>Some doc file<a class="headerlink" href="#some-doc-file" title="Link to this heading">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="hll"><span class="sd">A buggy Task Manager that provides an opportunity to debug code by both</span>
+</span><span class="hll"><span class="sd">reasoning about it and stepping through.</span>
+</span><span class="sd">The program has a number of bugs that are introduced one at a time.</span>
+<span class="sd">The goal is to find and fix the bugs.</span>
+<span class="sd">Ensure you step through this program in pdb only to understand how the program</span>
+<span class="sd">works and to find the bugs.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1"># Once debugged add some documentation examples to help the next programmer!</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pdb</span>
+<span class="c1"># import os</span>
+
+<span class="k">def</span> <span class="nf">add_task</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">task</span><span class="p">):</span>
+    <span class="c1"># pdb.set_trace()</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">task</span><span class="p">,</span> <span class="kc">False</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">mark_task_completed</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="c1">#breakpoint()</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+        <span class="n">tasks</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid task index.&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">delete_task</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+        <span class="n">tasks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tasks</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid task index.&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">list_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+    <span class="c1"># pdb.set_trace()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tasks</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No tasks available.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">task</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="s1">&#39;[X]&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">task</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;[ ]&#39;</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sort_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">):</span>
+    <span class="c1"># pdb.set_trace()</span>
+    <span class="n">tasks</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">task</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="c1"># pdb.set_trace()</span>
+    <span class="n">sort_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tasks</span><span class="p">[</span><span class="n">mid</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>
+        <span class="k">elif</span> <span class="n">tasks</span><span class="p">[</span><span class="n">mid</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 4pdb.set_trace()</span>
+    <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">1. Add Task&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Mark Task Completed&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Delete Task&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. List Tasks&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Sort Tasks&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Search Task&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;7. Exit&quot;</span><span class="p">)</span>
+
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter your choice: &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+            <span class="n">task</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter task description: &quot;</span><span class="p">)</span>
+            <span class="n">add_task</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">task</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+            <span class="c1"># pdb.set_trace()</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter task index to mark as completed: &quot;</span><span class="p">))</span>
+            <span class="n">mark_task_completed</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter task index to delete: &quot;</span><span class="p">))</span>
+            <span class="n">delete_task</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span>
+            <span class="n">list_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;5&quot;</span><span class="p">:</span>
+            <span class="n">sort_tasks</span><span class="p">(</span><span class="n">tasks</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tasks sorted.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;6&quot;</span><span class="p">:</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter task description to search: &quot;</span><span class="p">)</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">tasks</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Task &#39;</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&#39; found at index </span><span class="si">{</span><span class="n">index4</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Task &#39;</span><span class="si">{</span><span class="n">target</span><span class="si">}</span><span class="s2">&#39; not found.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;7&quot;</span><span class="p">:</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Exiting program.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid choice. Please try again.&quot;</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Week7Stuff</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Some doc file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apidocs/index.html">API Reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Week7Stuff documentation</a></li>
+      <li>Next: <a href="apidocs/index.html" title="next chapter">API Reference</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Dan.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/a-doc-file.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
