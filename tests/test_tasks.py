@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from week7.activity2.src.tasks import(
+from src.tasks import(
     add_task,
     mark_task_completed,
     delete_task,
